@@ -4,16 +4,21 @@
 #include "main.h"
 #include "chassis.h"
 
-int distanceToObject;
+int distanceToObjectLeft;
+int distanceToObjectRight
 Ultrasonic leftSonar;
 Ultrasonic rightSonar
-leftSonar = ultrasonicInit(1, 2); 
-rightSonar = ultrasonicInit(3,4); //two for when there is an imbalance it will be able to turn
+distanceToObjectLeft = 0;
+distanceToObjectRight = 0;
+leftSonar = ultrasonicInit(3, 4); 
+rightSonar = ultrasonicInit(1,2); //two for when there is an imbalance it will be able to turn
 void followSet()
 {
     int power, turn;
     while (1) 
     {
+        power = 0;
+        turn = 0;
         distanceToObjectLeft = ultrasonicGet(leftSonar);
         distanceToObjectRight = ultrasonicGet(rightSonar);
         printf("the distance to object is %d", distanceToObjectLeft);
@@ -31,10 +36,14 @@ void followSet()
         if (distanceToObjectLeft < distanceToObjectRight) { //turn right
             power = 20
             motorSet(2, power);
+            motorSet(3, power + turn);
+            motorSet(4, power + turn);
         }
         else if (distanceToObjectLeft > distanceToObjectRight) { //turn left
-            motorSet(2, power);
             power = -20
+            motorSet(2, power);
+            motorSet(5, power - turn);
+            motorSet(6, power - turn);
         }
         
     }
