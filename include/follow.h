@@ -5,13 +5,17 @@
 #include "chassis.h"
 
 int distanceToObjectLeft;
-int distanceToObjectRight
+int distanceToObjectRight;
+int distnaceToObjectMid;
 Ultrasonic leftSonar;
-Ultrasonic rightSonar
-distanceToObjectLeft = 0;
-distanceToObjectRight = 0;
+Ultrasonic rightSonar;
+Ultrasonic midSonar;
 leftSonar = ultrasonicInit(3, 4); 
-rightSonar = ultrasonicInit(1,2); //two for when there is an imbalance it will be able to turn
+rightSonar = ultrasonicInit(1, 2); //two for when there is an imbalance it will be able to turn
+midSonar = ultraSonicInit(5, 6);
+distanceToObjectLeft = (0, cm);
+distanceToObjectRight = (0, cm);
+distanceToObjectMid = (0, cm);
 void followSet()
 {
     int power, turn;
@@ -19,19 +23,25 @@ void followSet()
     {
         power = 0;
         turn = 0;
-        distanceToObjectLeft = ultrasonicGet(leftSonar);
-        distanceToObjectRight = ultrasonicGet(rightSonar);
+        distanceToObjectLeft = (ultrasonicGet(leftSonar),cm);
+        distanceToObjectRight = (ultrasonicGet(rightSonar),cm);
+        distanceToObjectMid = (ultraSonicGet(midSonar),cm);
         printf("the distance to object is %d", distanceToObjectLeft);
-        printf("the distnace to object is %d", distnaceToObjectRight);
-        motorSet(3, power + turn); //makes left wheels go forward
-        motorSet(4, power + turn); //makes left wheels go forward
-        motorSet(5, power - turn); //makes right wheels go forward
-        motorSet(6, power - turn); //makes right wheels go forward
-        if (10 < leftSonar < 20 || 10 < rightSonar < 20) { //move towards
+        printf("the distnace to object is %d", distanceToObjectRight);
+        printf("the distnace to object is %d", distanceToObjectMid);
+        if (10 < midSonar < 20) { //move towards
             power = 20;
+            motorSet(3, power + turn); //makes left wheels go forward
+            motorSet(4, power + turn); //makes left wheels go forward
+            motorSet(5, power - turn); //makes right wheels go forward
+            motorSet(6, power - turn); //makes right wheels go forward
         }
-        else if (10 > leftSonar || 10 > rightSonar) { //back away
+        else if (10 > midSonar) { //back away
             power = -20;
+            motorSet(3, power + turn);
+            motorSet(4, power + turn);
+            motorSet(5, power - turn);
+            motorSet(6, power - turn);
         }
         if (distanceToObjectLeft < distanceToObjectRight) { //turn right
             power = 20
@@ -45,7 +55,7 @@ void followSet()
             motorSet(5, power - turn);
             motorSet(6, power - turn);
         }
-        
+        wait(50);
     }
     delay(50);
 }
