@@ -26,10 +26,10 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
-int power, turn;
+//int power, turn;
 void operatorControl() {
 
-	while (1) {
+	/*while (1) {
 		power = joystickGetAnalog(1,2); //vertical axis on left joystick
 		turn = joystickGetAnalog(1,4); //horizontal axis on left joystick
 		motorSet(2, -turn); //makes the omni wheel spin the right way when turning left and right
@@ -38,7 +38,7 @@ void operatorControl() {
 		motorSet(5, power - turn); //set right wheel
 		motorSet(6, power - turn); //set right wheel
 		delay(20);	
-	}
+	}*/
 	/*
 	read the ultra soinc sensor
 	print value to the terminal
