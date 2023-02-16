@@ -37,23 +37,29 @@ midSonar = ultrasonicInit(5, 6);
 int distanceToObjectLeft;
 int distanceToObjectRight;
 int distanceToObjectMid;
-distanceToObjectLeft = ultrasonicGet(leftSonar);
-distanceToObjectRight = ultrasonicGet(rightSonar);
-distanceToObjectMid = ultrasonicGet(midSonar);
+//distanceToObjectLeft = ultrasonicGet(leftSonar);
+//distanceToObjectRight = ultrasonicGet(rightSonar);
+//distanceToObjectMid = ultrasonicGet(midSonar);
+
 printf("code start");
 int power, turn;
     while (1)
     {
-        printf("code start \n");
+        //printf("code start \n");
         motorSet(3, 75);
         power = 0;
         turn = 0;
+
         distanceToObjectLeft = (ultrasonicGet(leftSonar));
         distanceToObjectRight = (ultrasonicGet(rightSonar));
         distanceToObjectMid = (ultrasonicGet(midSonar));
-        printf("the distance to object is %d", distanceToObjectLeft);
-        printf("the distnace to object is %d", distanceToObjectRight);
-        printf("the distnace to object is %d", distanceToObjectMid);
+        printf("leftsonar %d ",ultrasonicGet(leftSonar));
+        printf("middlesonar %d ",ultrasonicGet(midSonar));
+        printf("rightsonar %d \n",ultrasonicGet(rightSonar));
+
+        //printf("the distance to object left is %d", (distanceToObjectLeft + 2));
+        //printf("the distnace to object right is %d", (distanceToObjectRight + 2));
+        //printf("the distnace to object mid is %d", (distanceToObjectMid+2));
         if (10 < distanceToObjectMid < 20) { //move towards
             power = 20;
             motorSet(3, power + turn); //makes left wheels go forward
@@ -61,7 +67,7 @@ int power, turn;
             motorSet(5, power - turn); //makes right wheels go forward
             motorSet(6, power - turn); //makes right wheels go forward
         }
-        else if (10 > distanceToObjectMid) { //back away
+        if (10 > distanceToObjectMid) { //back away
             power = -20;
             motorSet(3, power + turn);
             motorSet(4, power + turn);
@@ -80,9 +86,11 @@ int power, turn;
             motorSet(5, power - turn);
             motorSet(6, power - turn);
         }
-        wait(50);
+        delay(40);
     }
-    delay(200);
+    // after the while loop, not doing anything
+    //
+    /*delay(200);
 
 	/*while (1) {
 		power = joystickGetAnalog(1,2); //vertical axis on left joystick
