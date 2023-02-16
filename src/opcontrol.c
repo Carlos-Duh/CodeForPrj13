@@ -28,6 +28,61 @@
  */
 //int power, turn;
 void operatorControl() {
+Ultrasonic leftSonar;
+Ultrasonic rightSonar;
+Ultrasonic midSonar;
+leftSonar = ultrasonicInit(3, 4);
+rightSonar = ultrasonicInit(1, 2); //two for when there is an imbalance it will be able to turn
+midSonar = ultrasonicInit(5, 6);
+int distanceToObjectLeft;
+int distanceToObjectRight;
+int distanceToObjectMid;
+distanceToObjectLeft = ultrasonicGet(leftSonar);
+distanceToObjectRight = ultrasonicGet(rightSonar);
+distanceToObjectMid = ultrasonicGet(midSonar);
+printf("code start");
+int power, turn;
+    while (1)
+    {
+        printf("code start \n");
+        motorSet(3, 75);
+        power = 0;
+        turn = 0;
+        distanceToObjectLeft = (ultrasonicGet(leftSonar));
+        distanceToObjectRight = (ultrasonicGet(rightSonar));
+        distanceToObjectMid = (ultrasonicGet(midSonar));
+        printf("the distance to object is %d", distanceToObjectLeft);
+        printf("the distnace to object is %d", distanceToObjectRight);
+        printf("the distnace to object is %d", distanceToObjectMid);
+        if (10 < distanceToObjectMid < 20) { //move towards
+            power = 20;
+            motorSet(3, power + turn); //makes left wheels go forward
+            motorSet(4, power + turn); //makes left wheels go forward
+            motorSet(5, power - turn); //makes right wheels go forward
+            motorSet(6, power - turn); //makes right wheels go forward
+        }
+        else if (10 > distanceToObjectMid) { //back away
+            power = -20;
+            motorSet(3, power + turn);
+            motorSet(4, power + turn);
+            motorSet(5, power - turn);
+            motorSet(6, power - turn);
+        }
+        if (distanceToObjectLeft < distanceToObjectRight) { //turn right
+            power = 20;
+            motorSet(2, power);
+            motorSet(3, power + turn);
+            motorSet(4, power + turn);
+        }
+        else if (distanceToObjectLeft > distanceToObjectRight) { //turn left
+            power = -20;
+            motorSet(2, power);
+            motorSet(5, power - turn);
+            motorSet(6, power - turn);
+        }
+        wait(50);
+    }
+    delay(200);
 
 	/*while (1) {
 		power = joystickGetAnalog(1,2); //vertical axis on left joystick
@@ -52,4 +107,5 @@ void operatorControl() {
 		stop
 	}
 	*/
+	
 }
