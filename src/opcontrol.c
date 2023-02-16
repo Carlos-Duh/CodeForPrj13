@@ -45,6 +45,7 @@ printf("code start");
 int power, turn;
     while (1)
     {
+        
         //printf("code start \n");
         motorSet(3, 75);
         power = 0;
