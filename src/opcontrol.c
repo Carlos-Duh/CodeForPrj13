@@ -45,9 +45,7 @@ printf("code start");
 int power, turn;
     while (1)
     {
-        
-        //printf("code start \n");
-        motorSet(3, 75);
+        //front left is 5, back left is 6, front right is 4, back right is 3, omni wheel is 2
         power = 0;
         turn = 0;
 
@@ -62,30 +60,34 @@ int power, turn;
         //printf("the distnace to object right is %d", (distanceToObjectRight + 2));
         //printf("the distnace to object mid is %d", (distanceToObjectMid+2));
         if (10 < distanceToObjectMid < 20) { //move towards
-            power = 20;
-            motorSet(3, power + turn); //makes left wheels go forward
-            motorSet(4, power + turn); //makes left wheels go forward
-            motorSet(5, power - turn); //makes right wheels go forward
-            motorSet(6, power - turn); //makes right wheels go forward
+            power = -25;
+            motorSet(3, power); //makes back right wheel go forward
+            motorSet(4, power); //makes front right wheel go forward
+            motorSet(5, power); //makes front left wheel go forward
+            motorSet(6, power); //makes back left wheel go forward
         }
         if (10 > distanceToObjectMid) { //back away
-            power = -20;
-            motorSet(3, power + turn);
-            motorSet(4, power + turn);
-            motorSet(5, power - turn);
-            motorSet(6, power - turn);
+            power = 25;
+            motorSet(3, power);
+            motorSet(4, power);
+            motorSet(5, power);
+            motorSet(6, power);
         }
         if (distanceToObjectLeft < distanceToObjectRight) { //turn right
-            power = 20;
+            power = -25;
             motorSet(2, power);
-            motorSet(3, power + turn);
-            motorSet(4, power + turn);
+            motorSet(3, power);
+            motorSet(4, power);
+            motorSet(5, power / 2);
+            motorSet(6,power / 2);
         }
-        else if (distanceToObjectLeft > distanceToObjectRight) { //turn left
-            power = -20;
+        if (distanceToObjectLeft > distanceToObjectRight) { //turn left
+            power = -25;
             motorSet(2, power);
-            motorSet(5, power - turn);
-            motorSet(6, power - turn);
+            motorSet(3, power / 2);
+            motorSet(4, power / 2);
+            motorSet(5, power);
+            motorSet(6, power);
         }
         delay(40);
     }
