@@ -60,32 +60,36 @@ int power, turn;
         //printf("the distnace to object right is %d", (distanceToObjectRight + 2));
         //printf("the distnace to object mid is %d", (distanceToObjectMid+2));
         if (10 < distanceToObjectMid < 20) { //move towards
-            power = -25;
+            power = -30;
             motorSet(3, power); //makes back right wheel go forward
             motorSet(4, power); //makes front right wheel go forward
             motorSet(5, power); //makes front left wheel go forward
             motorSet(6, power); //makes back left wheel go forward
         }
         if (10 > distanceToObjectMid) { //back away
-            power = 25;
+            power = 30;
             motorSet(3, power);
             motorSet(4, power);
             motorSet(5, power);
             motorSet(6, power);
         }
-        if (abs(left - right) < 0.5) {
-            ;
+        if (abs(distanceToObjectLeft - distanceToObjectRight) < 0.5) {
+            power = 30;
+            motorSet(3, power);
+            motorSet(4, power);
+            motorSet(5, power);
+            motorSet(6, power);
         }
         else if (distanceToObjectLeft < distanceToObjectRight) { //turn right
-            power = -25;
+            power = -30;
             motorSet(2, power);
             motorSet(3, power / 2);
             motorSet(4, power / 2);
-            motorSet(5, power * );
+            motorSet(5, power);
             motorSet(6, power);
         }
         else if (distanceToObjectLeft > distanceToObjectRight) { //turn left
-            power = 25;
+            power = 30;
             motorSet(2, power);
             motorSet(3, power);
             motorSet(4, power);
