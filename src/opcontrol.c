@@ -73,21 +73,24 @@ int power, turn;
             motorSet(5, power);
             motorSet(6, power);
         }
-        if (distanceToObjectLeft < distanceToObjectRight) { //turn right
-            power = -25;
-            motorSet(2, power);
-            motorSet(3, power);
-            motorSet(4, power);
-            motorSet(5, power / 2);
-            motorSet(6,power / 2);
+        if (abs(left - right) < 0.5) {
+            ;
         }
-        if (distanceToObjectLeft > distanceToObjectRight) { //turn left
+        else if (distanceToObjectLeft < distanceToObjectRight) { //turn right
             power = -25;
             motorSet(2, power);
             motorSet(3, power / 2);
             motorSet(4, power / 2);
-            motorSet(5, power);
+            motorSet(5, power * );
             motorSet(6, power);
+        }
+        else if (distanceToObjectLeft > distanceToObjectRight) { //turn left
+            power = 25;
+            motorSet(2, power);
+            motorSet(3, power);
+            motorSet(4, power);
+            motorSet(5, power / 2);
+            motorSet(6, power / 2);
         }
         delay(40);
     }
