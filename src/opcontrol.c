@@ -59,22 +59,15 @@ int power, turn;
         //printf("the distance to object left is %d", (distanceToObjectLeft + 2));
         //printf("the distnace to object right is %d", (distanceToObjectRight + 2));
         //printf("the distnace to object mid is %d", (distanceToObjectMid+2));
-        if (10 < distanceToObjectMid < 20) { //move towards
+        if (5 < distanceToObjectMid < 30) { //move towards
             power = -30;
             motorSet(3, power); //makes back right wheel go forward
             motorSet(4, power); //makes front right wheel go forward
             motorSet(5, power); //makes front left wheel go forward
             motorSet(6, power); //makes back left wheel go forward
         }
-        if (10 > distanceToObjectMid) { //back away
-            power = 30;
-            motorSet(3, power);
-            motorSet(4, power);
-            motorSet(5, power);
-            motorSet(6, power);
-        }
-        if (abs(distanceToObjectLeft - distanceToObjectRight) < 0.5) {
-            power = 30;
+        if (abs(distanceToObjectLeft - distanceToObjectRight) < 0.8) {
+            power = -30;
             motorSet(3, power);
             motorSet(4, power);
             motorSet(5, power);
@@ -83,18 +76,18 @@ int power, turn;
         else if (distanceToObjectLeft < distanceToObjectRight) { //turn right
             power = -30;
             motorSet(2, power);
-            motorSet(3, power / 2);
-            motorSet(4, power / 2);
-            motorSet(5, power);
-            motorSet(6, power);
-        }
-        else if (distanceToObjectLeft > distanceToObjectRight) { //turn left
-            power = 30;
-            motorSet(2, power);
             motorSet(3, power);
             motorSet(4, power);
-            motorSet(5, power / 2);
-            motorSet(6, power / 2);
+            motorSet(5, power * 1.5);
+            motorSet(6, power * 1.5);
+        }
+        else if (distanceToObjectLeft > distanceToObjectRight) { //turn left
+            power = -30;
+            motorSet(2, power);
+            motorSet(3, power * 1.5);
+            motorSet(4, power * 1.5);
+            motorSet(5, power);
+            motorSet(6, power);
         }
         delay(40);
     }

@@ -117,11 +117,11 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/opcontrol.c.o",
-            "src\\opcontrol.c"
+            "bin/auto.c.o",
+            "src\\auto.c"
         ],
         "directory": "c:\\Users\\P7 Robotics\\Prj13-UltraSonicFollwingBot\\CodeForPrj13",
-        "file": "src\\opcontrol.c"
+        "file": "src\\auto.c"
     },
     {
         "arguments": [
@@ -179,10 +179,10 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/auto.c.o",
-            "src\\auto.c"
+            "bin/opcontrol.c.o",
+            "src\\opcontrol.c"
         ],
         "directory": "c:\\Users\\P7 Robotics\\Prj13-UltraSonicFollwingBot\\CodeForPrj13",
-        "file": "src\\auto.c"
+        "file": "src\\opcontrol.c"
     }
 ]
